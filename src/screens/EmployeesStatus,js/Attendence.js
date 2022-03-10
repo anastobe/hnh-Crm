@@ -8,13 +8,22 @@ import {
   StyleSheet,
   ScrollView
 } from 'react-native'
-import Header from '../../components/Header'
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+
+import Header from '../../components/Header'
 import { ICONS,COLORS,FONTS,SIZES } from '../../constraints/Index'
 import styles from "./EmployeeStatusStyle"
 
 const Attendence = ({ navigation }) => {
 
+  //calanderWork
+  const [date, setDate] = useState(new Date(1598051730000));
+  console.log("DobValue==>",date)
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setDate(currentDate);
+  };
 
   return (
     <>
@@ -25,6 +34,16 @@ const Attendence = ({ navigation }) => {
 
         <View>
             <Text>Attendence</Text>
+
+
+            <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={'date'}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        /> 
         </View>
 
       </ScrollView>

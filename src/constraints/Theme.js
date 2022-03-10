@@ -7,6 +7,7 @@ export const COLORS ={
   white: "#fff",
   black: "#000",
   lightWhite: "#f4f4f4",
+  golden: "#f2aa4c",
 
 };
 
@@ -44,7 +45,7 @@ export const FONTS ={
     body1: { fontFamily: "Times New Roman", fontSize:  SIZES.body1, lineHeight: 36  },
     body2: { fontFamily: "monospace", fontSize:  SIZES.body2, lineHeight: 30  },
     body3: { fontFamily: "cursive", fontSize:  SIZES.body3, lineHeight: 22  },
-    body4: { fontFamily: "emoji", fontSize:  SIZES.body4, lineHeight: 22  },
+    body4: { fontFamily: "fantasy", fontSize:  SIZES.h3, lineHeight: 22  },
 
 };
 

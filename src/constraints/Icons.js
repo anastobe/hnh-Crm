@@ -11,7 +11,14 @@ export const IONICONS ={
     location: "location-sharp",
     bulb: "bulb-sharp",
     backarrow: 'arrow-back-sharp',
-    setting: 'settings-outline'
+    setting: 'settings-outline',
+    thumb: 'thumbs-up-sharp',
+    thumbdown: 'thumbs-down-sharp',
+    message: 'chatbubble-ellipses-sharp',
+    send: 'send-sharp',
+    close: 'close-circle',
+    mail: 'mail-sharp'
+
   };
   
 

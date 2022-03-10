@@ -48,26 +48,9 @@ const MainNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen
-            name="Login"
-            component={Login}
-            // options={{
-            //   headerShown: false,
-            //   tabBarIcon: ({ focused, color, size }) => {
-            //     return <Icon name={'ios-home'} size={25} color={color} />
-            //   }
-            // }}
-          />
-            <Tab.Screen
-              name="NavigagatetoBottom"
-              component={NavigagatetoBottom}
-              // options={{
-              //   headerShown: false,
-              //   tabBarIcon: ({ focused, color, size }) => {
-              //     return <Icon name={'ios-home'} size={25} color={color} />
-              //   }
-              // }}
-            />
+          
+          <Tab.Screen name="Login" component={Login} />
+          <Tab.Screen name="NavigagatetoBottom" component={NavigagatetoBottom} />
 
 
 

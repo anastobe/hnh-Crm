@@ -6,43 +6,46 @@ import {
   StatusBar,
   TouchableOpacity,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  Image,
+  TextInput
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { fetchUser, selectAll } from '../../stores/user.reducer'
 
 //components
-import TextInputComponent from "../../components/TextInputComponent"
 import Button from '../../components/Button'
 
 //style
 import styles from "./Home.style.js"
 import Loader from '../../components/Loader'
 import Header from '../../components/Header'
+import { ICONS,COLORS,FONTS,SIZES,Images } from '../../constraints/Index'
+import TimeLineCard from '../../components/TimeLineCard'
 
 const Home = ({ navigation }) => {
 
   //loader
   const [load, setload] = useState(false)
+  const [comment, setcomment] = useState("")
 
-  console.log("navi==>",navigation)
+
+
 
   return (
     <>
     <StatusBar barStyle="dark-content" backgroundColor={'#f9f9f9'} />
     <SafeAreaView style={styles.SafeAreaView2}>
     
-        <Header props={navigation} />
+        <Header props={navigation} headerName="Timeline" />
 
-       {load &&  <Loader /> }
-        <ScrollView>
+       {/* {load &&  <Loader /> } */}
         
-          <Text>aas</Text>
-        
-        
-        
-        </ScrollView>  
+          
+         <TimeLineCard />
+
+         
     </SafeAreaView>
   </>
   )

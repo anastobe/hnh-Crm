@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,8 +9,10 @@ import {
   ScrollView
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+
 // import { useDispatch, useSelector } from 'react-redux'
 // import { fetchUser, selectAll } from '../../stores/user.reducer'
+
 
 //components
 import TextInputComponent from "../../components/TextInputComponent"
@@ -27,10 +29,10 @@ const Home = ({ navigation }) => {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
-  console.log("==>",ICONS)
   
   //loader
   const [load, setload] = useState(false)
+
 
   return (
     <>
@@ -79,6 +81,7 @@ const Home = ({ navigation }) => {
              </View>
 
 
+
           </View>
         </ScrollView>
         <TouchableOpacity  onPress={() => navigation.navigate("NavigagatetoBottom")}>
@@ -90,11 +93,6 @@ const Home = ({ navigation }) => {
   )
 }
 
-const styleUser = StyleSheet.create({
-  borderBottomWidth: 1,
-  borderColor: '#eee',
-  padding: 1,
-  marginTop: 10
-})
+
 
 export default Home

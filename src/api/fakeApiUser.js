@@ -22,14 +22,14 @@ export const getApiwithToken = async (url) => {
 }
 
 
-export const PostApiWithToken = async (url, bodyParameters) => {
+export const PostApiWithToken = async (url,bodyParameters,config) => {
 
   console.log("url", url)
-  console.log("data", data)
+  console.log("bodyParameters", bodyParameters)
+  console.log("config", config)
 
   try {
     let response = await axios.post(url,bodyParameters,config)
-    console.log(response, "response")
     if (response.status == 200) {
       return Promise.resolve({
         status: 'success',

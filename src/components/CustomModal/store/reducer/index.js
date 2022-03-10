@@ -1,5 +1,5 @@
 const initialState = {
-    show: false,
+    show: "",
     containerStyle: {},
     title: "Modal Title",
     titleStyle: {},
@@ -10,15 +10,23 @@ const initialState = {
     firstButtonTitle: "CONTINUE",
     secondButtonTitle: "Buy Me A Drink First",
     secondButtonPress: () => {},
-    secondButton: false
+    secondButton: false,
+
 }
 
 export default (state = initialState, { type, payload }) => {
+
+
+    console.log("type=============================>", type , "payload==>", payload)
+
+
     switch (type) {
 
         case "OPEN_MODAL":
-            return { ...state, ...payload }
-
+            return { 
+                ...state, 
+                ...payload 
+            }
         case "CLOSE_MODAL":
             return { ...initialState }
 

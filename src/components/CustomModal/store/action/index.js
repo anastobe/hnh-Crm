@@ -1,5 +1,5 @@
 export const openModal = (details) => {
-    console.log(details);
+    console.log("openModal==>",details);
     return (dispatch) => {
         dispatch({ type: "OPEN_MODAL", payload: details })
     }

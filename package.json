@@ -26,6 +26,7 @@
     "react-native": "0.67.3",
     "react-native-circular-progress-indicator": "^2.0.6",
     "react-native-gesture-handler": "^2.3.0",
+    "react-native-modal": "^13.0.1",
     "react-native-pager-view": "^5.4.11",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "^2.4.1",

@@ -18,6 +18,9 @@ import { getApiwithToken, PostApiWithToken } from '../api/fakeApiUser'
 import { ICONS,COLORS,FONTS,SIZES,Images } from '../constraints/Index'
 import { baseUrl_TimeLine } from '../utils/baseUrl_TimeLine'
 
+import { useDispatch } from 'react-redux'
+import { closeModal, openModal } from '../components/CustomModal/store/action'
+
 const Header = ({
     ...props
     
@@ -30,6 +33,9 @@ const Header = ({
       const [ExpectedTimeOut, setExpectedTimeOut] = useState("")
       const [StatusBarValue, setStatusBarValue] = useState("")
 
+      const dispatch = useDispatch()
+
+      console.log("useDispatch==>",dispatch)
 
       useEffect(() => {
         getData()
@@ -149,6 +155,20 @@ console.log("status",status)
 
 
 
+
+const onShare = async () => {
+  dispatch(openModal({
+      show: true,
+      title: "You’re All Set!!",
+      discription: "Your friends have been invited and will join you soon. Now let’s get started!!",
+      confirmButtonAction: () => {
+          dispatch(closeModal())
+      },
+      successIcon: true
+  }))
+};
+
+
     return (
 
     <View>
@@ -159,7 +179,8 @@ console.log("status",status)
         </TouchableOpacity>
         <Text style={{ color: "#fff", fontSize: 20 }} >{props.headerName}</Text> 
 
-        <TouchableOpacity onPress={() =>{ setShowBottom(!ShowBottom), setremoveMargin(!removeMargin) }}>
+
+        <TouchableOpacity onPress={() =>{ setShowBottom(!ShowBottom), setremoveMargin(!removeMargin), onShare() }}>
           <Image style={{ width: 50, height: 50, borderRadius: 50, borderColor: COLORS.golden, borderWidth: 2 }} source={Images.profile} />
         </TouchableOpacity>
 

@@ -11,10 +11,10 @@ import TimeIn from '../screens/EmployeesFunctionality/TimeIn';
 import TimeOut from '../screens/EmployeesFunctionality/TimeOut';
 import BreakIn from '../screens/EmployeesFunctionality/BreakIn';
 import BreakOut from '../screens/EmployeesFunctionality/BreakOut';
-import Absent from '../screens/EmployeesStatus,js/Absent';
-import Attendence from '../screens/EmployeesStatus,js/Attendence';
-import Leaves from '../screens/EmployeesStatus,js/Leaves';
-import SalaryCalculate from '../screens/EmployeesStatus,js/SalaryCalculate';
+import Absent from '../screens/EmployeesStatus/Absent';
+import Attendence from '../screens/EmployeesStatus/Attendence';
+import Leaves from '../screens/EmployeesStatus/Leaves';
+import SalaryCalculate from '../screens/EmployeesStatus/SalaryCalculate';
 
 const Drawer = createDrawerNavigator();
 

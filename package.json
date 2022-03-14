@@ -26,6 +26,7 @@
     "react-native": "0.67.3",
     "react-native-circular-progress-indicator": "^2.0.6",
     "react-native-gesture-handler": "^2.3.0",
+    "react-native-modal": "^13.0.1",
     "react-native-pager-view": "^5.4.11",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "^2.4.1",
@@ -34,7 +35,8 @@
     "react-native-svg": "^12.3.0",
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^9.1.0",
-    "react-redux": "^7.2.6"
+    "react-redux": "^7.2.6",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

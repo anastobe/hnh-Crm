@@ -31,10 +31,15 @@ const SalaryCalculate = ({ navigation }) => {
   const [HalfDay, setHalfDay] = useState(0);
   const [shortShift, setshortShift] = useState(0);
   const [Absent, setAbsent] = useState(0);
+  const [discrepency, setdiscrepency] = useState(0);
+  const [In, setIn] = useState(0);
 
   console.log("day bahir ===>",Day)
   console.log("HalfDay ===>",HalfDay)
   console.log("shortShift ===>",shortShift)
+  console.log("Absent ===>",Absent)
+  console.log("discrepency ===>",discrepency)
+  console.log("In ===>",In)
 
   
 
@@ -75,6 +80,9 @@ const SalaryCalculate = ({ navigation }) => {
     let dayCount = 0
     let HalfDayCount = 0
     let shortshiftCount = 0
+    let AbsentCount = 0
+    let discrepencyCount = 0
+    let InCount = 0
 
 
     data.AttendanceReport.map((v,i)=> {if (v.totalHour >= '07:50:00' || v.totalHour == undefined ) {
@@ -89,6 +97,28 @@ const SalaryCalculate = ({ navigation }) => {
       shortshiftCount++;
       setshortShift(shortshiftCount)
     }
+
+    //for Late
+    if (v.in !== '00:00:00' || v.in !== '' || v.in !== 'holiday'  ) {
+      InCount++;
+      console.log("========================================>",v.date)
+      setIn(InCount)
+    }    
+    
+    //for Absent
+      if (v.type === 'absent') {
+      AbsentCount++;
+      setAbsent(AbsentCount)
+    }
+
+    //discrepency
+
+    if (v.discrepency == '1') {
+      discrepencyCount++;
+      setdiscrepency(discrepencyCount)
+    }
+
+
   
   })}
 

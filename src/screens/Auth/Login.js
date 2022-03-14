@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -10,8 +10,7 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-// import { useDispatch, useSelector } from 'react-redux'
-// import { fetchUser, selectAll } from '../../stores/user.reducer'
+import { useDispatch, useSelector,Provider } from 'react-redux'
 
 
 //components
@@ -22,6 +21,8 @@ import Button from '../../components/Button'
 import styles from "./Auth.style.js"
 import { ICONS,COLORS,FONTS,SIZES } from '../../constraints/Index'
 import Loader from '../../components/Loader'
+import { closeModal, openModal } from '../../stores/actions/user.action';
+import BreakInModal from '../../components/CustomModal/BreakInModal';
 
 const Home = ({ navigation }) => {
 
@@ -29,9 +30,11 @@ const Home = ({ navigation }) => {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
-  
   //loader
   const [load, setload] = useState(false)
+
+
+
 
 
   return (

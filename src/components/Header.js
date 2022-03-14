@@ -18,28 +18,27 @@ import { getApiwithToken, PostApiWithToken } from '../api/fakeApiUser'
 import { ICONS,COLORS,FONTS,SIZES,Images } from '../constraints/Index'
 import { baseUrl_TimeLine } from '../utils/baseUrl_TimeLine'
 
-import { useDispatch } from 'react-redux'
-import { closeModal, openModal } from '../components/CustomModal/store/action'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeModal, openModal } from '../stores/actions/user.action'
+
 
 const Header = ({
-    ...props
-    
-    }) => {
-
-
-      const [ShowBottom, setShowBottom] = useState(false)
-      const [removeMargin, setremoveMargin] = useState(false)
-      const [Data, setData] = useState([]);      
-      const [ExpectedTimeOut, setExpectedTimeOut] = useState("")
-      const [StatusBarValue, setStatusBarValue] = useState("")
-
-      const dispatch = useDispatch()
-
-      console.log("useDispatch==>",dispatch)
-
+  ...props
+  
+}) => {
+  
+  
+  const [ShowBottom, setShowBottom] = useState(false)
+  const [removeMargin, setremoveMargin] = useState(false)
+  const [Data, setData] = useState([]);      
+  const [ExpectedTimeOut, setExpectedTimeOut] = useState("")
+  const [StatusBarValue, setStatusBarValue] = useState("")
+  const dispatch = useDispatch()
+  
       useEffect(() => {
         getData()
     }, [])
+    
     const getData = async () => {
         const { data, status } = await getApiwithToken(`${baseUrl_TimeLine}/v1/attendance/get-time`)
         setData(data)
@@ -53,16 +52,13 @@ const Header = ({
         const Time = moment.duration(moment(Totaltime, "HH:mm:ss A").diff(moment(workTime, "HH:mm:ss A"))) ;
         
         const totalBreakinDay = `${Time.hours()}:${Time.minutes()}:${Time.seconds()}`  //break Calculated
-        console.log("total break1 ==>",totalBreakinDay)
         
         const currentTime = moment().format('h:mm:ss')
         // current time - (worktime)  
         var sub =  moment.duration(moment(currentTime, "HH:mm:ss A").diff(moment(workTime, "HH:mm:ss A"))) ;
 
         const totalBreakPlusLate = `${sub.hours()}:${sub.minutes()}:${sub.seconds()}` //totalBreak Calculated
-        console.log("totalBreakPlusLate ==>",totalBreakPlusLate )
-
-
+        
         //new ExpectedTime Becomes
         const ExpectedTimeOutValue = moment.duration(ExpectedTimeOut).add(moment.duration(totalBreakPlusLate))
         const ExpectedTimeOutValueInFormat = `${ExpectedTimeOutValue.hours()}:${ExpectedTimeOutValue.minutes()}:${ExpectedTimeOutValue.seconds()}` 
@@ -76,7 +72,6 @@ const Header = ({
 const progressBarValue = (workTime) =>{
   
   var format = 'hh:mm:ss'
-console.log("workTime==>",workTime)
   // var time = moment() gives you current time. no format required.
   var time = moment(workTime,format)
   
@@ -132,9 +127,7 @@ console.log("workTime==>",workTime)
 }
 
 
-
 //timeIn
-
 const timeIn = async () => {
   // const { data, status }
   const { data, status }= await PostApiWithToken(`${baseUrl_TimeLine}/v1/attendance/time/in`,
@@ -144,27 +137,26 @@ const timeIn = async () => {
       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxOTUsInByaW1hcnlfaWQiOjE5NSwibmFtZSI6IkFuYXMgQWhtZWQiLCJpbWFnZV91cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vdWM_ZXhwb3J0PXZpZXcmaWQ9MVc4VDN2Qm9jVk9PM3FQSFNYQlpUaFRTTUJ5Z0JGemZ6IiwidHlwZSI6ImVtcGxveWVlIiwiZ2VuZGVyIjoiMCIsInN0YXR1c19pZCI6MSwic2Vjb25kYXJ5X251bWJlciI6IjAzMzMzNzQxODgxIiwicHJpbWFyeV9udW1iZXIiOiIwMzMyMjczMTY2MyIsInVzZXJzdGF0dXMiOnsibmFtZSI6IkFjdGl2ZSIsIm1lc3NhZ2UiOiJXZWxjb21lIFRvIENybSJ9LCJyZW1vdGVXb3JrIjoiMCIsImlwIjpbeyJpZCI6MSwiaXAiOiI1OS4xMDMuMTM4LjEzNSJ9LHsiaWQiOjcsImlwIjoiNTkxIC4gMDMxIC4gMzgxIC4gMzUifSx7ImlkIjo4LCJpcCI6Ijo6ZmZmZjoxMTUuMTg2LjQuMTU4In0seyJpZCI6OSwiaXAiOiIxMTUgLiAxODYgLiA0MTUgLiA4In0seyJpZCI6MTAsImlwIjoiOjpmZmZmOjU5LjEwMy4xMzguNDgifSx7ImlkIjoxMSwiaXAiOiI3ODYuNzg1LjI1NS4xMzMifSx7ImlkIjoxMiwiaXAiOiI4OC45OS41NTUuNjY2In0seyJpZCI6MTQsImlwIjoiOjpmZmZmOjU5LjEwMy4xMzguNDgifSx7ImlkIjoxNSwiaXAiOiJzNDU0MzU0MzU0In0seyJpZCI6MTYsImlwIjoiMzI0IC4gMzI1IC4gMzI1IC4gMzI1In0seyJpZCI6MTcsImlwIjoiMTkzLjE3Ni44NC4xNTcifSx7ImlkIjoxOCwiaXAiOiI6OmZmZmY6MjAyLjQ3LjQ0LjUxIn0seyJpZCI6MTksImlwIjoiMjAyLjQ3LjQ0LjUxIn0seyJpZCI6MjAsImlwIjoiMTEzLjIwMy4yMDUuMTM3In0seyJpZCI6MjEsImlwIjoiOjpmZmZmOjExMy4yMDMuMjA1LjEzNyJ9LHsiaWQiOjIyLCJpcCI6IjExMy4yMDMuMjA1LjEzNyJ9LHsiaWQiOjIzLCJpcCI6Ijo6ZmZmZjoxMTMuMjAzLjIwNS4xMzcifV0sInNoaWZ0TmFtZSI6Ik5ldyBhZnRlcm5vb24gU2hpZnQiLCJzaGlmdFN0YXJ0IjoiMTI6MDA6UE0iLCJzaGlmdEVuZCI6IjA4OjUwOlBNIiwic2hpZnRIb3VycyI6IjA4OjUwOjAwIiwic2hpZnRCcmVhayI6IjAxOjAwOjAwIiwic2hpZnRXb3JraW5nSG91cnMiOiIwNzo1MDowMCIsImVtcGxveWVlX3R5cGUiOiJtZW1iZXIiLCJzZWNvbmRhcnlfaWQiOjYxMCwiYnJlYWsiOiJmYWxzZSIsIk9mZmljaWFsYnJlYWsiOiJmYWxzZSJ9LCJpYXQiOjE2NDY2NDI5MTAsImV4cCI6MTY1MDA1NTcxMH0.whUlkp2ZsN9HYXr5WKEtt_qhi_DSwZq-b7gdLtE_KpE'
     }
 })
-console.log("status",status)
   if (status === "success") {
     alert(data.message)
   } else {
-    alert("SuccessFully Login")
+    alert("Not SuccessFully Login")
   }
 
 }
 
 
 
+const BreakIn = async () => {
 
-const onShare = async () => {
+  
   dispatch(openModal({
-      show: true,
-      title: "You’re All Set!!",
-      discription: "Your friends have been invited and will join you soon. Now let’s get started!!",
-      confirmButtonAction: () => {
-          dispatch(closeModal())
-      },
-      successIcon: true
+    show: true,
+    title: "BreakIn",
+    confirmButtonAction: () => {
+      dispatch(closeModal())
+    },
+    successIcon: true
   }))
 };
 
@@ -180,7 +172,7 @@ const onShare = async () => {
         <Text style={{ color: "#fff", fontSize: 20 }} >{props.headerName}</Text> 
 
 
-        <TouchableOpacity onPress={() =>{ setShowBottom(!ShowBottom), setremoveMargin(!removeMargin), onShare() }}>
+        <TouchableOpacity onPress={() =>{ setShowBottom(!ShowBottom), setremoveMargin(!removeMargin) }}>
           <Image style={{ width: 50, height: 50, borderRadius: 50, borderColor: COLORS.golden, borderWidth: 2 }} source={Images.profile} />
         </TouchableOpacity>
 
@@ -204,7 +196,9 @@ const onShare = async () => {
          </View>    
 
          <View>
-           <Text style={{ color: COLORS.black, padding: 10, borderRadius: 10, margin: 10 ,backgroundColor: COLORS.golden, ...FONTS.h4 }}  >Break In</Text>
+           <TouchableOpacity onPress={()=>{  BreakIn() }} >
+            <Text style={{ color: COLORS.black, padding: 10, borderRadius: 10, margin: 10 ,backgroundColor: COLORS.golden, ...FONTS.h4 }}  >Break In</Text>
+           </TouchableOpacity>
          </View>    
 
          <View>

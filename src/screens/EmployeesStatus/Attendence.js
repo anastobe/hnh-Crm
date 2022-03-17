@@ -12,29 +12,21 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Button from '../../components/Button'
 import Header from '../../components/Header'
+import SmallButton from '../../components/SmallButton'
 import { ICONS,COLORS,FONTS,SIZES } from '../../constraints/Index'
 import styles from "./EmployeeStatusStyle"
 
 const Attendence = ({ navigation }) => {
 
-  //calanderWork
-  const [date, setDate] = useState(new Date(1598051730000));
-  console.log("DobValue==>",date)
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-    setDate(currentDate);
-  };
+  //states
+  const [showstartDate, setshowstartDate] = useState(false);
+  const [startDate, setstartDate] = useState();
 
-  const PickStartDate = () =>{
-    <DateTimePicker
-    testID="dateTimePicker"
-    value={date}
-    mode={'date'}
-    is24Hour={true}
-    display="default"
-    onChange={onChange}
-  /> 
-  }
+  const [showEndDate, setshowEndDate] = useState(false);
+  const [EndDate, setEndDate] = useState();
+
+ console.log()
+
 
   return (
     <>
@@ -48,29 +40,43 @@ const Attendence = ({ navigation }) => {
             <Text>Attendence</Text>
           </View>
 
-         <View> 
-          <TouchableOpacity onPress={()=>{PickStartDate()}} >
-            <Button buttonName="Start Date" />
+          <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 20 }} > 
+            <View>
+          <TouchableOpacity onPress={()=>{setshowstartDate(!showstartDate)}} >
+            <SmallButton buttonName="Start Date" />
           </TouchableOpacity>
+            <Text>startDate {startDate} </Text>
+            </View>
 
-          <TouchableOpacity>
-            <Button buttonName="End Date" />
+          <View>
+          <TouchableOpacity onPress={()=>{setshowEndDate(!showEndDate)}} >
+            <SmallButton buttonName="End Date" />
           </TouchableOpacity>
+          <Text>EndDate  {EndDate} </Text>
+          </View>
+        
          </View>
 
-         {/* {show && (
-                  <View>
-                    <DateTimePicker
+         
+         {showstartDate && (<DateTimePicker
                       testID="dateTimePicker"
                       value={date}
-                      mode={mode}
                       is24Hour={true}
                       dateFormat="month day year"
                       display="default"
-                      onChange={onChange}
-                    />
-                  </View>
-                )} */}
+                      onChange={onChangeStartDate}
+          />)}
+        
+        {showEndDate && (<DateTimePicker
+                      testID="dateTimePicker"
+                      value={date}
+                      is24Hour={true}
+                      dateFormat="month day year"
+                      display="default"
+                      onChange={onChangeEndDate}
+          />)}
+
+
 
 
 
